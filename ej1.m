@@ -1,6 +1,8 @@
 y=@(t)((10+t^2)*e^(-t)/(t+1));
 y_prime=@(t,y)((2*t*e^-t-(t+2)*y) / (t+1));
 
+GE_HE = []; GE_RK = [];
+
 for r=1:8
   x_0 = 0;
   x_f = 5;
@@ -18,6 +20,10 @@ for r=1:8
   printf("h: %f, y(T) con RK4: %.5f, y(T) con HEUN: %.5f\n", H(r), RK(r), HE(r));
   printf("RK4 relative error is: %d \n", abs(RK(r) - y(x_f)));
   printf("HEUN relative error is: %d \n", abs(HE(r) - y(x_f)));
+  
+  GE_RK = [GE_RK,abs(RK(r) - y(x_f))];
+  GE_HE = [GE_HE,abs(HE(r) - y(x_f))]; 
+  
   if ( abs(RK(r) - y(x_f)) < 10^-4)
       printf("En la iteracion %d, RK4 tuvo error aceptable \n", r);
   end
