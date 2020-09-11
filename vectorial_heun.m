@@ -1,6 +1,6 @@
 
 
-function [T Y]=heun(f,a,b,ya,N) 
+function [T Y]=heunp(f,a,b,ya,N) 
 % Entradas 
 % - a y b son los extremos del intervalo de integración 
 % - ya es la condición inicial y(a) 
