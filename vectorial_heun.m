@@ -15,7 +15,7 @@ T(1)=a;
 Y(1,:)=ya; 
 for j=1:N 
   T(j+1)=T(j)+h;
-  K1=hf(T(j),Y(j,:)); 
-  K2=hf(T(j+1),Y(j,:)+K1); 
+  K1=h*f(T(j),Y(j,:)); 
+  K2=h*f(T(j+1),Y(j,:)+K1); 
   Y(j+1,:)=Y(j,:)+(K1+K2)/2; 
 end
