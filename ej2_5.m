@@ -1,11 +1,8 @@
 brus = @(t,X,P) [ 1-(P(2)+1)*X(1)+P(1)*(X(1)^2)*X(2) , P(2)*X(1) - P(1)*(X(1)^2).*X(2)  ];
 
-x_0 = 0;
-x_f = 100;
-h = 0.01;
-M = x_f/h;
+x_0 = 0; x_f = 100; h = 0.01; M = x_f/h; a = 1;
 
-a = 1;
+Y = []; T0 = []; T = [];
 
 function p = periodo(r,h)
 % r es un vector con las posiciones y
