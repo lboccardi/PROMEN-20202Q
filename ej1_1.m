@@ -1,7 +1,7 @@
 y=@(t)((10+t^2)*e^(-t)/(t+1));
 y_prime=@(t,y)((2*t*e^-t-(t+2)*y) / (t+1));
 
-GE_HE = []; GE_RK = []; H = []; Y = [];
+GE_HE = []; GE_RK = []; H = []; Y = [], R_RK = []; R_HE = [];
 x_0 = 0; x_f = 5; ya = 10;
 rk4_solved = false; he_solved = false;
 
@@ -16,14 +16,18 @@ for r=1:8
   
   GE_RK = [GE_RK;abs(X_1(end) - y(x_f))];
   GE_HE = [GE_HE;abs(X_2(end) - y(x_f))];
- 
+  
+  R_HE = [R_HE;X_2(end)];
+  R_RK = [R_RK;X_1(end)];
+
   if (r == 7) % aca ponemos el valor para ver cómo se comporta f en función de la aproximación
     t = x_0:H(end):x_f;
     F =[];
     for i=t
       F=[F;y(i)];
     end
-    plot(t, X_1(:, 1), "og;RK4;", t, X_2(:,1), "xb;HEUN;", t, F(:,1), "-r;Y;");
+    plot(t, X_1(:, 1), "or;RK4;", t, X_2(:,1), "xb;HEUN;", t, F(:,1), "-g;Y;");
+    title ("Aproximación de RK4 y Heun a y(t)");
   end
   
   if ( abs(X_1(end) - y(x_f)) < 10^-4 && rk4_solved == false)
@@ -36,4 +40,4 @@ for r=1:8
   end  
 end
 
-[H, GE_RK, GE_HE]
+[H, R_RK, R_HE]  
